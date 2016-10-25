@@ -127,15 +127,15 @@ const PaperDatepicker = React.createClass({
           <div>
             <div className='paper-datepicker__scrim' onClick={this._handleCancelClick}></div>
             <div className={'paper-datepicker__calendar paper-card ' + cssMap.align[this.props.align]}>
-              <div className='paper-datepicker__calendar-header layout horizontal'>
-                <div className='one-seventh' onClick={this._handleMonthToggle.bind(null, 'prev')}>
-                  <i className='paper-datepicker__calendar-nav material-icons'>chevron_left</i>
+              <div className='paper-datepicker__header layout horizontal'>
+                <div className='one-seventh text--center' onClick={this._handleMonthToggle.bind(null, 'prev')}>
+                  <i className='material-icons isAction'>chevron_left</i>
                 </div>
-                <div className='paper-datepicker__calendar-month five-sevenths'>
+                <div className='paper-datepicker__month grid__item five-sevenths text--center'>
                   <strong>{this.state.currentMonth.format('MMMM YYYY')}</strong>
                 </div>
-                <div className='one-seventh' onClick={this._handleMonthToggle.bind(null, 'next')}>
-                  <i className='paper-datepicker__calendar-nav material-icons'>chevron_right</i>
+                <div className='one-seventh text--center' onClick={this._handleMonthToggle.bind(null, 'next')}>
+                  <i className='material-icons isAction'>chevron_right</i>
                 </div>
               </div>
 
@@ -149,7 +149,7 @@ const PaperDatepicker = React.createClass({
                 <div className='paper-datepicker__weekday one-seventh text--center'>S</div>
               </div>
 
-              <div className='layout horizontal justify wrap'>
+              <div className='paper-datepicker__days layout horizontal justify wrap'>
                 {this._getDays().map((day, i) => {
                   if (day.number) {
                     const date = this.state.currentMonth.clone().date(day.number);
@@ -158,14 +158,14 @@ const PaperDatepicker = React.createClass({
 
                     if (is_selectable) {
                       return (
-                        <div className={'paper-datepicker__calendar-day-item one-seventh' + (day.isActive ? ' isActive' : '')} key={i} onClick={this._handleDateSelected.bind(null, day)}>
-                          <div className='paper-datepicker__calendar-day-item-content'>{day.number}</div>
+                        <div className={'paper-datepicker__day one-seventh text--center' + (day.isActive ? ' active' : '')} key={i} onClick={this._handleDateSelected.bind(null, day)}>
+                          <span>{day.number}</span>
                         </div>
                       );
                     } else {
                       return (
-                        <div className='paper-datepicker__calendar-day-item one-seventh' key={i}>
-                          <div className='paper-datepicker__calendar-day-item-content text--disabled'>{day.number}</div>
+                        <div className='paper-datepicker__day one-seventh text--center' key={i}>
+                          <span className='text--disabled'>{day.number}</span>
                         </div>
                       );
                     }
@@ -177,10 +177,10 @@ const PaperDatepicker = React.createClass({
                 })}
               </div>
 
-              <div className='paper-datepicker__calendar-footer text--right'>
-                {(this.props.date || this.state.selectedDate) && !this.props.hideClear ? <div className='paper-btn paper-btn--flat paper-btn--default' onClick={this._handleClearClick}>Clear</div> : null}
-                <div className='paper-btn paper-btn--flat paper-btn--default' onClick={this._handleCancelClick}>Cancel</div>
-                <div className='paper-btn paper-btn--flat paper-btn--secondary' onClick={this._handleOkClick}>OK</div>
+              <div className='paper-datepicker__footer text--right layout horizontal end-justified'>
+                {(this.props.date || this.state.selectedDate) && !this.props.hideClear ? <div className='paper-btn paper-btn--neg paper-btn--compact' onClick={this._handleClearClick}>Clear</div> : null}
+                <div className='paper-btn paper-btn--flat paper-btn--compact' onClick={this._handleCancelClick}>Cancel</div>
+                <div className='paper-btn paper-btn--raised paper-btn--pos' onClick={this._handleOkClick}>OK</div>
               </div>
             </div>
           </div>
