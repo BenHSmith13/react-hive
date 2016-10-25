@@ -139,19 +139,19 @@ var PaperDatepicker = _react2.default.createClass({
           { className: 'paper-datepicker__calendar paper-card ' + cssMap.align[this.props.align] },
           _react2.default.createElement(
             'div',
-            { className: 'paper-datepicker__calendar-header layout horizontal' },
+            { className: 'paper-datepicker__header layout horizontal' },
             _react2.default.createElement(
               'div',
-              { className: 'one-seventh', onClick: this._handleMonthToggle.bind(null, 'prev') },
+              { className: 'one-seventh text--center', onClick: this._handleMonthToggle.bind(null, 'prev') },
               _react2.default.createElement(
                 'i',
-                { className: 'paper-datepicker__calendar-nav material-icons' },
+                { className: 'material-icons isAction' },
                 'chevron_left'
               )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'paper-datepicker__calendar-month five-sevenths' },
+              { className: 'paper-datepicker__month grid__item five-sevenths text--center' },
               _react2.default.createElement(
                 'strong',
                 null,
@@ -160,10 +160,10 @@ var PaperDatepicker = _react2.default.createClass({
             ),
             _react2.default.createElement(
               'div',
-              { className: 'one-seventh', onClick: this._handleMonthToggle.bind(null, 'next') },
+              { className: 'one-seventh text--center', onClick: this._handleMonthToggle.bind(null, 'next') },
               _react2.default.createElement(
                 'i',
-                { className: 'paper-datepicker__calendar-nav material-icons' },
+                { className: 'material-icons isAction' },
                 'chevron_right'
               )
             )
@@ -209,7 +209,7 @@ var PaperDatepicker = _react2.default.createClass({
           ),
           _react2.default.createElement(
             'div',
-            { className: 'layout horizontal justify wrap' },
+            { className: 'paper-datepicker__days layout horizontal justify wrap' },
             this._getDays().map(function (day, i) {
               if (day.number) {
                 var date = _this.state.currentMonth.clone().date(day.number);
@@ -219,20 +219,20 @@ var PaperDatepicker = _react2.default.createClass({
                 if (is_selectable) {
                   return _react2.default.createElement(
                     'div',
-                    { className: 'paper-datepicker__calendar-day-item one-seventh' + (day.isActive ? ' isActive' : ''), key: i, onClick: _this._handleDateSelected.bind(null, day) },
+                    { className: 'paper-datepicker__day one-seventh text--center' + (day.isActive ? ' active' : ''), key: i, onClick: _this._handleDateSelected.bind(null, day) },
                     _react2.default.createElement(
-                      'div',
-                      { className: 'paper-datepicker__calendar-day-item-content' },
+                      'span',
+                      null,
                       day.number
                     )
                   );
                 } else {
                   return _react2.default.createElement(
                     'div',
-                    { className: 'paper-datepicker__calendar-day-item one-seventh', key: i },
+                    { className: 'paper-datepicker__day one-seventh text--center', key: i },
                     _react2.default.createElement(
-                      'div',
-                      { className: 'paper-datepicker__calendar-day-item-content text--disabled' },
+                      'span',
+                      { className: 'text--disabled' },
                       day.number
                     )
                   );
@@ -244,20 +244,20 @@ var PaperDatepicker = _react2.default.createClass({
           ),
           _react2.default.createElement(
             'div',
-            { className: 'paper-datepicker__calendar-footer text--right' },
+            { className: 'paper-datepicker__footer text--right layout horizontal end-justified' },
             (this.props.date || this.state.selectedDate) && !this.props.hideClear ? _react2.default.createElement(
               'div',
-              { className: 'paper-btn paper-btn--flat paper-btn--default', onClick: this._handleClearClick },
+              { className: 'paper-btn paper-btn--neg paper-btn--compact', onClick: this._handleClearClick },
               'Clear'
             ) : null,
             _react2.default.createElement(
               'div',
-              { className: 'paper-btn paper-btn--flat paper-btn--default', onClick: this._handleCancelClick },
+              { className: 'paper-btn paper-btn--flat paper-btn--compact', onClick: this._handleCancelClick },
               'Cancel'
             ),
             _react2.default.createElement(
               'div',
-              { className: 'paper-btn paper-btn--flat paper-btn--secondary', onClick: this._handleOkClick },
+              { className: 'paper-btn paper-btn--raised paper-btn--pos', onClick: this._handleOkClick },
               'OK'
             )
           )
