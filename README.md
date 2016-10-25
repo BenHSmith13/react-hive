@@ -1,4 +1,7 @@
-# react-hive
+# react-hive [![npm version](https://badge.fury.io/js/react-hive.svg)](https://badge.fury.io/js/react-hive)
+
+## Versioning Strategy
+This package's version will follow the versioning of Hive (https://github.com/enderlabs/hive). When including the Hive stylesheets make sure they match the version of the package you're using.
 
 ## Installation
 ```

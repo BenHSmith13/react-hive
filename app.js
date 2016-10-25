@@ -5,6 +5,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import {
   PaperNav,
   PaperIcon,
+  PaperDatepicker,
 } from './src/index';
 
 import { Colors } from './src/constants/Styles';
@@ -103,7 +104,7 @@ const App = React.createClass({
         />
         <main className='core-main'>
           <div className='container'>
-            Content goes here
+            <PaperDatepicker />
           </div>
         </main>
       </div>
