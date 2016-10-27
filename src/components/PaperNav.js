@@ -27,16 +27,20 @@ const PaperNav = React.createClass({
     };
   },
 
-  _handleLinkClick (link, state_name) {
-    if (link.link_route) {
-      window.location = link.link_route;
+  _handleLinkClick (link, state_name, e) {
+    if (link.children) {
+      if (state_name) {
+        this.setState({
+          [state_name]: link.title === this.state[state_name] ? null : link.title,
+        });
+      }
+    } else {
+      if (link.link_route) {
+        window.location = link.link_route;
+      }
     }
-
-    if (state_name) {
-      this.setState({
-        [state_name]: link.title === this.state[state_name] ? null : link.title,
-      });
-    }
+    
+    e.preventDefault();
   },
 
   _renderTopLevelLink (link, i) {
