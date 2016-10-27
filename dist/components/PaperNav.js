@@ -25,6 +25,7 @@ var PaperNav = _react2.default.createClass({
 
   propTypes: {
     footer: _react2.default.PropTypes.node,
+    logo_description: _react2.default.PropTypes.node,
     logo_label: _react2.default.PropTypes.string,
     logo_url: _react2.default.PropTypes.string,
     primary: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape(linkStructure)).isRequired,
@@ -158,15 +159,15 @@ var PaperNav = _react2.default.createClass({
               'div',
               { className: 'paper-tile__content hv-truncate self-center' },
               _react2.default.createElement(
-                'a',
-                { className: 'color--primary' },
-                _react2.default.createElement('img', { className: 'img--responsive hv-size--36', src: this.props.logo_url })
+                'div',
+                { className: 'hv-size--48' },
+                _react2.default.createElement('img', { className: 'img--responsive', src: this.props.logo_url })
               )
             ) : null,
-            this.props.logo_label ? _react2.default.createElement(
+            _react2.default.createElement(
               'div',
               { className: 'paper-tile__content hv-truncate self-center' },
-              _react2.default.createElement(
+              this.props.logo_label ? _react2.default.createElement(
                 'h4',
                 { className: 'text--uppercase hv-truncate' },
                 _react2.default.createElement(
@@ -174,8 +175,17 @@ var PaperNav = _react2.default.createClass({
                   null,
                   this.props.logo_label
                 )
-              )
-            ) : null
+              ) : null,
+              this.props.logo_description ? _react2.default.createElement(
+                'div',
+                { className: 'hv-truncate' },
+                _react2.default.createElement(
+                  'small',
+                  { className: 'color--disabled' },
+                  this.props.logo_description
+                )
+              ) : null
+            )
           )
         )
       ) : null,
