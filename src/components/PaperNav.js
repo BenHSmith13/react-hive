@@ -13,6 +13,7 @@ const linkStructure = {
 const PaperNav = React.createClass({
   propTypes: {
     footer: React.PropTypes.node,
+    logo_description: React.PropTypes.node,
     logo_label: React.PropTypes.string,
     logo_url: React.PropTypes.string,
     primary: React.PropTypes.arrayOf(React.PropTypes.shape(linkStructure)).isRequired,
@@ -123,21 +124,29 @@ const PaperNav = React.createClass({
               <div className='paper-tile hv-height--48 layout horizontal center'>
                 {this.props.logo_url ? (
                   <div className='paper-tile__content hv-truncate self-center'>
-                    <a className='color--primary'>
-                      <img className='img--responsive hv-size--36' src={this.props.logo_url} />
-                    </a>
+                    <div className='hv-size--48'>
+                      <img className='img--responsive' src={this.props.logo_url} />
+                    </div>
                   </div>
                 ) : null}
 
-                {this.props.logo_label ? (
-                  <div className='paper-tile__content hv-truncate self-center'>
+                <div className='paper-tile__content hv-truncate self-center'>
+                  {this.props.logo_label ? (
                     <h4 className='text--uppercase hv-truncate'>
                       <strong>
                         {this.props.logo_label}
                       </strong>
                     </h4>
-                  </div>
-                ) : null}
+                  ) : null}
+
+                  {this.props.logo_description ? (
+                    <div className='hv-truncate'>
+                      <small className='color--disabled'>
+                        {this.props.logo_description}
+                      </small>
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
           </header>

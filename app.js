@@ -4,11 +4,8 @@ import { Router, Route, hashHistory } from 'react-router';
 
 import {
   PaperNav,
-  PaperIcon,
   PaperDatepicker,
 } from './src/index';
-
-import { Colors } from './src/constants/Styles';
 
 const App = React.createClass({
   getInitialState () {
@@ -18,9 +15,9 @@ const App = React.createClass({
   _getFooter () {
     return (
       <div>
-        <small className='color--disabled'>Powered By</small>
+        <small className='color--disabled'>Made with <i className='material-icons md-inherit color--neg'>favorite</i> by</small>
         <a className='core-nav__teem-logo' href='/'>
-          <PaperIcon icon='teem' style={{ fill: Colors.YELLOW, width: 80 }} />
+          <img src='/hive/assets/images/teem-logo.svg' />
         </a>
       </div>
     );
@@ -31,6 +28,7 @@ const App = React.createClass({
       <div className='core-layout'>
         <PaperNav
           footer={this._getFooter()}
+          logo_description='v2.3.0-122-g2270770'
           logo_label='HIVE'
           logo_url='http://enderlabs.github.io/hive/assets/images/hive-logo.png'
           primary={[
