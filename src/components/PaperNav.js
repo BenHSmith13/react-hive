@@ -34,12 +34,10 @@ const PaperNav = React.createClass({
           [state_name]: link.title === this.state[state_name] ? null : link.title,
         });
       }
-    } else {
-      if (link.link_route) {
-        window.location = link.link_route;
-      }
+    } else if (link.link_route) {
+      window.location = link.link_route;
     }
-    
+
     e.preventDefault();
   },
 

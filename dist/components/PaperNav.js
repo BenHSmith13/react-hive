@@ -38,14 +38,16 @@ var PaperNav = _react2.default.createClass({
       active_second_level_menu: null
     };
   },
-  _handleLinkClick: function _handleLinkClick(link, state_name) {
-    if (link.link_route) {
+  _handleLinkClick: function _handleLinkClick(link, state_name, e) {
+    if (link.children) {
+      if (state_name) {
+        this.setState(_defineProperty({}, state_name, link.title === this.state[state_name] ? null : link.title));
+      }
+    } else if (link.link_route) {
       window.location = link.link_route;
     }
 
-    if (state_name) {
-      this.setState(_defineProperty({}, state_name, link.title === this.state[state_name] ? null : link.title));
-    }
+    e.preventDefault();
   },
   _renderTopLevelLink: function _renderTopLevelLink(link, i) {
     var classes = ['paper-list__item core-nav__app', link.children ? 'hasSubmenu' : '', this.state.active_top_level_menu === link.title ? 'isOpen' : '', link.is_active ? 'isActive' : ''];
