@@ -51,7 +51,7 @@ const PaperNav = React.createClass({
         <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link, 'active_top_level_menu')}>
           <div className='paper-tile layout horizontal center'>
             <div className='paper-tile__content'>
-              <div className='hv-size--24 layout horizontal center-center'>
+              <div className='hv-size--24'>
                 <PaperIcon icon={link.icon} />
               </div>
             </div>
@@ -116,36 +116,35 @@ const PaperNav = React.createClass({
 
   render () {
     return (
-      <nav className='core-nav layout vertical justified'>
-        <div className='flex--firm'>
-          {this.props.logo_url || this.props.logo_label ? (
-            <header className='hv-part'>
-              <div className='container container--full container--compact'>
-                <div className='paper-tile layout horizontal center'>
-                  {this.props.logo_url ? (
-                    <div className='paper-tile__content'>
-                      <a className='color--primary'>
-                        <img className='img--responsive hv-size--36' src={this.props.logo_url} />
-                      </a>
-                    </div>
-                  ) : null}
+      <nav className='core-nav'>
+        {this.props.logo_url || this.props.logo_label ? (
+          <header className='hv-part abs-top core-nav__header'>
+            <div className='container container--full container--compact'>
+              <div className='paper-tile hv-height--48 layout horizontal center'>
+                {this.props.logo_url ? (
+                  <div className='paper-tile__content hv-truncate self-center'>
+                    <a className='color--primary'>
+                      <img className='img--responsive hv-size--36' src={this.props.logo_url} />
+                    </a>
+                  </div>
+                ) : null}
 
-                  {this.props.logo_label ? (
-                    <div className='paper-tile__content'>
-                      <h4><strong>{this.props.logo_label}</strong></h4>
-                    </div>
-                  ) : null}
-                </div>
+                {this.props.logo_label ? (
+                  <div className='paper-tile__content hv-truncate self-center'>
+                    <h4 className='text--uppercase hv-truncate'>
+                      <strong>
+                        {this.props.logo_label}
+                      </strong>
+                    </h4>
+                  </div>
+                ) : null}
               </div>
+            </div>
+          </header>
+        ) : null}
 
-            </header>
-          ) : null}
-
-          <div className='container container--full container--compact'>
-            <div className='paper-divider paper-divider--thick' />
-          </div>
-
-          <div className='hv-part hv-part--m'>
+        <div className='fit core-nav__content'>
+          <div className='hv-part'>
             <ul className='paper-list paper-list--nav-tree'>
               {this.props.primary.map(this._renderTopLevelLink)}
             </ul>
@@ -153,19 +152,21 @@ const PaperNav = React.createClass({
 
           {this.props.secondary || this.props.footer ? (
             <div className='container container--full container--compact'>
-              <div className='paper-divider paper-divider--thick' />
+              <div className='paper-divider paper-divider--thick'></div>
             </div>
           ) : null}
 
           {this.props.secondary ? (
-            <div className='hv-part hv-part--m'>
+            <div className='hv-part'>
               <div className='container container--full container--compact'>
                 <ul className='paper-list'>
                   {this.props.secondary.map((link, i) => {
                     return (
                       <li className='paper-list__row' key={i}>
-                        <a className='paper-tile' onClick={this._handleLinkClick.bind(null, link)}>
-                          {link.title}
+                        <a className='paper-tile layout horizontal center' onClick={this._handleLinkClick.bind(null, link)}>
+                          <div className='paper-tile__content'>
+                            {link.title}
+                          </div>
                         </a>
                       </li>
                     );
@@ -177,13 +178,10 @@ const PaperNav = React.createClass({
         </div>
 
         {this.props.footer ? (
-          <footer className='paper-toolbar paper-toolbar--footer layout horizontal center self-end flex-none'>
-            <div className='container container--full container--compact'>
-              <div className='paper-divider paper-divider--thick'></div>
-              <div className='hv-part hv-part--m paper-tile layout horizontal center'>
-                <div className='paper-tile__content'>
-                  {this.props.footer}
-                </div>
+          <footer className='abs-bottom core-nav__footer'>
+            <div className='hv-part paper-tile layout horizontal justified center'>
+              <div className='paper-tile__content'>
+                {this.props.footer}
               </div>
             </div>
           </footer>
