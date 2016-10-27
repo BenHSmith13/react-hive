@@ -40,9 +40,11 @@ const App = React.createClass({
             {
               title: 'Components',
               icon: 'tools',
+              is_active: true,
               children: [
                 {
                   title: 'Layout',
+                  is_active: true,
                   children: [
                     {
                       title: 'Nav',
@@ -51,6 +53,7 @@ const App = React.createClass({
                     {
                       title: 'Drawer',
                       link_route: '/#drawer',
+                      is_active: true,
                     },
                     {
                       title: 'Callout',

@@ -2,6 +2,8 @@ import React from 'react';
 
 import PaperIcon from './PaperIcon';
 
+import Styles from '../constants/Styles';
+
 const linkStructure = {
   title: React.PropTypes.string,
   icon: React.PropTypes.string,
@@ -42,11 +44,12 @@ const PaperNav = React.createClass({
   },
 
   _renderTopLevelLink (link, i) {
+    const is_active = this.state.active_top_level_menu === link.title || link.is_active;
     const classes = [
       'paper-list__item core-nav__app',
       link.children ? 'hasSubmenu' : '',
-      this.state.active_top_level_menu === link.title ? 'isOpen' : '',
-      link.is_active ? 'isActive' : '',
+      this.state.active_top_level_menu === link.title ? 'isOpen isActive' : '',
+      is_active ? 'isActive' : '',
     ];
 
     return (
@@ -55,7 +58,7 @@ const PaperNav = React.createClass({
           <div className='paper-tile layout horizontal center'>
             <div className='paper-tile__content'>
               <div className='hv-size--24'>
-                <PaperIcon icon={link.icon} />
+                <PaperIcon icon={link.icon} style={is_active ? { fill: Styles.Colors.YELLOW } : null} />
               </div>
             </div>
 
@@ -78,6 +81,7 @@ const PaperNav = React.createClass({
       'paper-list__item',
       link.children ? 'hasSubmenu' : '',
       this.state.active_second_level_menu === link.title ? 'isOpen' : '',
+      link.is_active ? 'isActive' : '',
     ];
 
     return (
@@ -104,9 +108,14 @@ const PaperNav = React.createClass({
   },
 
   _renderThirdLevelLink (link, i) {
+    const classes = [
+      'paper-list__item',
+      link.is_active ? 'isActive' : '',
+    ];
+
     return (
       <li className='paper-list__row' key={i}>
-        <a className='paper-list__item' onClick={this._handleLinkClick.bind(null, link)}>
+        <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link)}>
           <div className='paper-tile layout horizontal justified center'>
             <div className='paper-tile__content'>
               {link.title}
