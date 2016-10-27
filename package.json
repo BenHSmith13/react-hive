@@ -1,6 +1,6 @@
 {
   "name": "react-hive",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A collection of shared React components that utilize the Hive styles and functionality",
   "main": "dist/index.js",
   "scripts": {

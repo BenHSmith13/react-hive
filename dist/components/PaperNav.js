@@ -8,6 +8,10 @@ var _PaperIcon = require('./PaperIcon');
 
 var _PaperIcon2 = _interopRequireDefault(_PaperIcon);
 
+var _Styles = require('../constants/Styles');
+
+var _Styles2 = _interopRequireDefault(_Styles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -50,7 +54,8 @@ var PaperNav = _react2.default.createClass({
     e.preventDefault();
   },
   _renderTopLevelLink: function _renderTopLevelLink(link, i) {
-    var classes = ['paper-list__item core-nav__app', link.children ? 'hasSubmenu' : '', this.state.active_top_level_menu === link.title ? 'isOpen' : '', link.is_active ? 'isActive' : ''];
+    var is_active = this.state.active_top_level_menu === link.title || link.is_active;
+    var classes = ['paper-list__item core-nav__app', link.children ? 'hasSubmenu' : '', this.state.active_top_level_menu === link.title ? 'isOpen isActive' : '', is_active ? 'isActive' : ''];
 
     return _react2.default.createElement(
       'li',
@@ -67,7 +72,7 @@ var PaperNav = _react2.default.createClass({
             _react2.default.createElement(
               'div',
               { className: 'hv-size--24' },
-              _react2.default.createElement(_PaperIcon2.default, { icon: link.icon })
+              _react2.default.createElement(_PaperIcon2.default, { icon: link.icon, style: is_active ? { fill: _Styles2.default.Colors.YELLOW } : null })
             )
           ),
           _react2.default.createElement(
@@ -89,7 +94,7 @@ var PaperNav = _react2.default.createClass({
     );
   },
   _renderSecondLevelLink: function _renderSecondLevelLink(link, i) {
-    var classes = ['paper-list__item', link.children ? 'hasSubmenu' : '', this.state.active_second_level_menu === link.title ? 'isOpen' : ''];
+    var classes = ['paper-list__item', link.children ? 'hasSubmenu' : '', this.state.active_second_level_menu === link.title ? 'isOpen' : '', link.is_active ? 'isActive' : ''];
 
     return _react2.default.createElement(
       'li',
@@ -124,12 +129,14 @@ var PaperNav = _react2.default.createClass({
     );
   },
   _renderThirdLevelLink: function _renderThirdLevelLink(link, i) {
+    var classes = ['paper-list__item', link.is_active ? 'isActive' : ''];
+
     return _react2.default.createElement(
       'li',
       { className: 'paper-list__row', key: i },
       _react2.default.createElement(
         'a',
-        { className: 'paper-list__item', onClick: this._handleLinkClick.bind(null, link) },
+        { className: classes.join(' '), onClick: this._handleLinkClick.bind(null, link) },
         _react2.default.createElement(
           'div',
           { className: 'paper-tile layout horizontal justified center' },
