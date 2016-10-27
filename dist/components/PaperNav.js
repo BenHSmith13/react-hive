@@ -63,7 +63,7 @@ var PaperNav = _react2.default.createClass({
             { className: 'paper-tile__content' },
             _react2.default.createElement(
               'div',
-              { className: 'hv-size--24 layout horizontal center-center' },
+              { className: 'hv-size--24' },
               _react2.default.createElement(_PaperIcon2.default, { icon: link.icon })
             )
           ),
@@ -144,52 +144,47 @@ var PaperNav = _react2.default.createClass({
 
     return _react2.default.createElement(
       'nav',
-      { className: 'core-nav layout vertical justified' },
-      _react2.default.createElement(
-        'div',
-        { className: 'flex--firm' },
-        this.props.logo_url || this.props.logo_label ? _react2.default.createElement(
-          'header',
-          { className: 'hv-part' },
-          _react2.default.createElement(
-            'div',
-            { className: 'container container--full container--compact' },
-            _react2.default.createElement(
-              'div',
-              { className: 'paper-tile layout horizontal center' },
-              this.props.logo_url ? _react2.default.createElement(
-                'div',
-                { className: 'paper-tile__content' },
-                _react2.default.createElement(
-                  'a',
-                  { className: 'color--primary' },
-                  _react2.default.createElement('img', { className: 'img--responsive hv-size--36', src: this.props.logo_url })
-                )
-              ) : null,
-              this.props.logo_label ? _react2.default.createElement(
-                'div',
-                { className: 'paper-tile__content' },
-                _react2.default.createElement(
-                  'h4',
-                  null,
-                  _react2.default.createElement(
-                    'strong',
-                    null,
-                    this.props.logo_label
-                  )
-                )
-              ) : null
-            )
-          )
-        ) : null,
+      { className: 'core-nav' },
+      this.props.logo_url || this.props.logo_label ? _react2.default.createElement(
+        'header',
+        { className: 'hv-part abs-top core-nav__header' },
         _react2.default.createElement(
           'div',
           { className: 'container container--full container--compact' },
-          _react2.default.createElement('div', { className: 'paper-divider paper-divider--thick' })
-        ),
+          _react2.default.createElement(
+            'div',
+            { className: 'paper-tile hv-height--48 layout horizontal center' },
+            this.props.logo_url ? _react2.default.createElement(
+              'div',
+              { className: 'paper-tile__content hv-truncate self-center' },
+              _react2.default.createElement(
+                'a',
+                { className: 'color--primary' },
+                _react2.default.createElement('img', { className: 'img--responsive hv-size--36', src: this.props.logo_url })
+              )
+            ) : null,
+            this.props.logo_label ? _react2.default.createElement(
+              'div',
+              { className: 'paper-tile__content hv-truncate self-center' },
+              _react2.default.createElement(
+                'h4',
+                { className: 'text--uppercase hv-truncate' },
+                _react2.default.createElement(
+                  'strong',
+                  null,
+                  this.props.logo_label
+                )
+              )
+            ) : null
+          )
+        )
+      ) : null,
+      _react2.default.createElement(
+        'div',
+        { className: 'fit core-nav__content' },
         _react2.default.createElement(
           'div',
-          { className: 'hv-part hv-part--m' },
+          { className: 'hv-part' },
           _react2.default.createElement(
             'ul',
             { className: 'paper-list paper-list--nav-tree' },
@@ -203,7 +198,7 @@ var PaperNav = _react2.default.createClass({
         ) : null,
         this.props.secondary ? _react2.default.createElement(
           'div',
-          { className: 'hv-part hv-part--m' },
+          { className: 'hv-part' },
           _react2.default.createElement(
             'div',
             { className: 'container container--full container--compact' },
@@ -216,8 +211,12 @@ var PaperNav = _react2.default.createClass({
                   { className: 'paper-list__row', key: i },
                   _react2.default.createElement(
                     'a',
-                    { className: 'paper-tile', onClick: _this._handleLinkClick.bind(null, link) },
-                    link.title
+                    { className: 'paper-tile layout horizontal center', onClick: _this._handleLinkClick.bind(null, link) },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'paper-tile__content' },
+                      link.title
+                    )
                   )
                 );
               })
@@ -227,19 +226,14 @@ var PaperNav = _react2.default.createClass({
       ),
       this.props.footer ? _react2.default.createElement(
         'footer',
-        { className: 'paper-toolbar paper-toolbar--footer layout horizontal center self-end flex-none' },
+        { className: 'abs-bottom core-nav__footer' },
         _react2.default.createElement(
           'div',
-          { className: 'container container--full container--compact' },
-          _react2.default.createElement('div', { className: 'paper-divider paper-divider--thick' }),
+          { className: 'hv-part paper-tile layout horizontal justified center' },
           _react2.default.createElement(
             'div',
-            { className: 'hv-part hv-part--m paper-tile layout horizontal center' },
-            _react2.default.createElement(
-              'div',
-              { className: 'paper-tile__content' },
-              this.props.footer
-            )
+            { className: 'paper-tile__content' },
+            this.props.footer
           )
         )
       ) : null
