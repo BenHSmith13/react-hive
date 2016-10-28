@@ -14,6 +14,7 @@ const linkStructure = {
 
 const PaperNav = React.createClass({
   propTypes: {
+    base_url: React.PropTypes.string,
     footer: React.PropTypes.node,
     logo_description: React.PropTypes.node,
     logo_label: React.PropTypes.string,
@@ -37,7 +38,7 @@ const PaperNav = React.createClass({
         });
       }
     } else if (link.link_route) {
-      window.location = link.link_route;
+      window.location = this.props.base_url + link.link_route;
     }
 
     e.preventDefault();
