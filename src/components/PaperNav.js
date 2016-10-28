@@ -19,6 +19,7 @@ const PaperNav = React.createClass({
     logo_description: React.PropTypes.node,
     logo_label: React.PropTypes.string,
     logo_url: React.PropTypes.string,
+    onLinkClick: React.PropTypes.func,
     primary: React.PropTypes.arrayOf(React.PropTypes.shape(linkStructure)).isRequired,
     secondary: React.PropTypes.arrayOf(React.PropTypes.shape(linkStructure)),
   },
@@ -36,16 +37,22 @@ const PaperNav = React.createClass({
         this.setState({
           [state_name]: link.title === this.state[state_name] ? null : link.title,
         });
+
+        e.preventDefault();
       }
-    } else if (link.link_route) {
-      window.location = this.props.base_url + link.link_route;
     }
 
-    e.preventDefault();
+    if (this.props.onLinkClick) {
+      this.props.onLinkClick(e, link);
+    }
+  },
+
+  _checkIfActive (link) {
+    return window.location.href.indexOf(link.link_route) > -1;
   },
 
   _renderTopLevelLink (link, i) {
-    const is_active = this.state.active_top_level_menu === link.title || link.is_active;
+    const is_active = this.state.active_top_level_menu === link.title || this._checkIfActive(link);
     const classes = [
       'paper-list__item core-nav__app',
       link.children ? 'hasSubmenu' : '',
@@ -82,7 +89,7 @@ const PaperNav = React.createClass({
       'paper-list__item',
       link.children ? 'hasSubmenu' : '',
       this.state.active_second_level_menu === link.title ? 'isOpen' : '',
-      link.is_active ? 'isActive' : '',
+      this._checkIfActive(link) ? 'isActive' : '',
     ];
 
     return (
@@ -111,7 +118,7 @@ const PaperNav = React.createClass({
   _renderThirdLevelLink (link, i) {
     const classes = [
       'paper-list__item',
-      link.is_active ? 'isActive' : '',
+      this._checkIfActive(link) ? 'isActive' : '',
     ];
 
     return (

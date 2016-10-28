@@ -8,8 +8,18 @@ import {
 } from './src/index';
 
 const App = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object,
+  },
+
   getInitialState () {
     return {};
+  },
+
+  _handleLinkClick (e, link) {
+    if (link.link_route) {
+      this.context.router.push(link.link_route);
+    }
   },
 
   _getFooter () {
@@ -31,37 +41,35 @@ const App = React.createClass({
           logo_description='v2.3.0-122-g2270770'
           logo_label='HIVE'
           logo_url='http://enderlabs.github.io/hive/assets/images/hive-logo.png'
+          onLinkClick={this._handleLinkClick}
           primary={[
             {
               title: 'Getting Started',
               icon: 'account',
-              link_route: '#',
+              link_route: '/',
             },
             {
               title: 'Components',
               icon: 'tools',
-              is_active: true,
               children: [
                 {
                   title: 'Layout',
-                  is_active: true,
                   children: [
                     {
                       title: 'Nav',
-                      link_route: '/#nav',
+                      link_route: '/nav',
                     },
                     {
                       title: 'Drawer',
-                      link_route: '/#drawer',
-                      is_active: true,
+                      link_route: '/drawer',
                     },
                     {
                       title: 'Callout',
-                      link_route: '/#callout',
+                      link_route: '/callout',
                     },
                     {
                       title: 'Zero State',
-                      link_route: '/#zero-state',
+                      link_route: '/zero-state',
                     },
                   ],
                 },
@@ -70,19 +78,19 @@ const App = React.createClass({
                   children: [
                     {
                       title: 'Field',
-                      link_route: '/#field',
+                      link_route: '/field',
                     },
                     {
                       title: 'Select',
-                      link_route: '/#select',
+                      link_route: '/select',
                     },
                     {
                       title: 'Button',
-                      link_route: '/#button',
+                      link_route: '/button',
                     },
                     {
                       title: 'Checkbox',
-                      link_route: '/#checkbox',
+                      link_route: '/checkbox',
                     },
                     {
                       title: 'Datepicker',
@@ -95,7 +103,7 @@ const App = React.createClass({
                   children: [
                     {
                       title: 'Icon',
-                      link_route: '/#icon',
+                      link_route: '/icon',
                     },
                   ],
                 },
@@ -116,5 +124,6 @@ const App = React.createClass({
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route component={App} path='/' />
+    <Route component={App} path='select' />
   </Router>
 , document.getElementById('docs'));
