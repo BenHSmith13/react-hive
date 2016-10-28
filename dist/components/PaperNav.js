@@ -28,10 +28,12 @@ var PaperNav = _react2.default.createClass({
   displayName: 'PaperNav',
 
   propTypes: {
+    base_url: _react2.default.PropTypes.string,
     footer: _react2.default.PropTypes.node,
     logo_description: _react2.default.PropTypes.node,
     logo_label: _react2.default.PropTypes.string,
     logo_url: _react2.default.PropTypes.string,
+    onLinkClick: _react2.default.PropTypes.func,
     primary: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape(linkStructure)).isRequired,
     secondary: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape(linkStructure))
   },
@@ -46,15 +48,20 @@ var PaperNav = _react2.default.createClass({
     if (link.children) {
       if (state_name) {
         this.setState(_defineProperty({}, state_name, link.title === this.state[state_name] ? null : link.title));
+
+        e.preventDefault();
       }
-    } else if (link.link_route) {
-      window.location = link.link_route;
     }
 
-    e.preventDefault();
+    if (this.props.onLinkClick) {
+      this.props.onLinkClick(e, link);
+    }
+  },
+  _checkIfActive: function _checkIfActive(link) {
+    return window.location.href.indexOf(link.link_route) > -1;
   },
   _renderTopLevelLink: function _renderTopLevelLink(link, i) {
-    var is_active = this.state.active_top_level_menu === link.title || link.is_active;
+    var is_active = this.state.active_top_level_menu === link.title || this._checkIfActive(link);
     var classes = ['paper-list__item core-nav__app', link.children ? 'hasSubmenu' : '', this.state.active_top_level_menu === link.title ? 'isOpen isActive' : '', is_active ? 'isActive' : ''];
 
     return _react2.default.createElement(
@@ -94,7 +101,7 @@ var PaperNav = _react2.default.createClass({
     );
   },
   _renderSecondLevelLink: function _renderSecondLevelLink(link, i) {
-    var classes = ['paper-list__item', link.children ? 'hasSubmenu' : '', this.state.active_second_level_menu === link.title ? 'isOpen' : '', link.is_active ? 'isActive' : ''];
+    var classes = ['paper-list__item', link.children ? 'hasSubmenu' : '', this.state.active_second_level_menu === link.title ? 'isOpen' : '', this._checkIfActive(link) ? 'isActive' : ''];
 
     return _react2.default.createElement(
       'li',
@@ -129,7 +136,7 @@ var PaperNav = _react2.default.createClass({
     );
   },
   _renderThirdLevelLink: function _renderThirdLevelLink(link, i) {
-    var classes = ['paper-list__item', link.is_active ? 'isActive' : ''];
+    var classes = ['paper-list__item', this._checkIfActive(link) ? 'isActive' : ''];
 
     return _react2.default.createElement(
       'li',
