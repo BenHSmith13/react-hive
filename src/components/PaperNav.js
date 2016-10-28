@@ -14,7 +14,6 @@ const linkStructure = {
 
 const PaperNav = React.createClass({
   propTypes: {
-    base_url: React.PropTypes.string,
     footer: React.PropTypes.node,
     logo_description: React.PropTypes.node,
     logo_label: React.PropTypes.string,
