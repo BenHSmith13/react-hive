@@ -12,7 +12,16 @@
     "type": "git",
     "url": "git+ssh://git@github.com/enderlabs/react-hive.git"
   },
-  "author": "Brandon Beeks",
+  "author": {
+    "name": "Teem"
+  },
+  "contributors": [
+    {
+      "name": "Brandon Beeks",
+      "role": "Developer",
+      "email": "brandon@beeks.me"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/enderlabs/react-hive/issues"

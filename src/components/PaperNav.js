@@ -21,6 +21,15 @@ const PaperNav = React.createClass({
     onLinkClick: React.PropTypes.func,
     primary: React.PropTypes.arrayOf(React.PropTypes.shape(linkStructure)).isRequired,
     secondary: React.PropTypes.arrayOf(React.PropTypes.shape(linkStructure)),
+    shouldShowLink: React.PropTypes.func,
+  },
+
+  getDefaultProps () {
+    return {
+      shouldShowLink () {
+        return true;
+      },
+    };
   },
 
   getInitialState () {
@@ -51,86 +60,98 @@ const PaperNav = React.createClass({
   },
 
   _renderTopLevelLink (link, i) {
-    const is_active = this.state.active_top_level_menu === link.title || this._checkIfActive(link);
-    const classes = [
-      'paper-list__item core-nav__app',
-      link.children ? 'hasSubmenu' : '',
-      this.state.active_top_level_menu === link.title ? 'isOpen isActive' : '',
-      is_active ? 'isActive' : '',
-    ];
+    if (this.props.shouldShowLink(link)) {
+      const is_active = this.state.active_top_level_menu === link.title || this._checkIfActive(link);
+      const classes = [
+        'paper-list__item core-nav__app',
+        link.children ? 'hasSubmenu' : '',
+        this.state.active_top_level_menu === link.title ? 'isOpen isActive' : '',
+        is_active ? 'isActive' : '',
+      ];
 
-    return (
-      <li className='paper-list__row' key={i}>
-        <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link, 'active_top_level_menu')}>
-          <div className='paper-tile layout horizontal center'>
-            <div className='paper-tile__content'>
-              <div className='hv-size--24'>
-                <PaperIcon icon={link.icon} style={is_active ? { fill: Styles.Colors.YELLOW } : null} />
+      return (
+        <li className='paper-list__row' key={i}>
+          <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link, 'active_top_level_menu')}>
+            <div className='paper-tile layout horizontal center'>
+              <div className='paper-tile__content'>
+                <div className='hv-size--24'>
+                  <PaperIcon icon={link.icon} style={is_active ? { fill: Styles.Colors.YELLOW } : null} />
+                </div>
+              </div>
+
+              <div className='paper-tile__content'>
+                <h5>{link.title}</h5>
               </div>
             </div>
-
-            <div className='paper-tile__content'>
-              <h5>{link.title}</h5>
-            </div>
-          </div>
-        </a>
-        {link.children ? (
-          <ul className='paper-list paper-list--nav-tree'>
-            {link.children.map(this._renderSecondLevelLink)}
-          </ul>
-        ) : null}
-      </li>
-    );
+          </a>
+          {link.children ? (
+            <ul className='paper-list paper-list--nav-tree'>
+              {link.children.map(this._renderSecondLevelLink)}
+            </ul>
+          ) : null}
+        </li>
+      );
+    } else {
+      return null;
+    }
   },
 
   _renderSecondLevelLink (link, i) {
-    const classes = [
-      'paper-list__item',
-      link.children ? 'hasSubmenu' : '',
-      this.state.active_second_level_menu === link.title ? 'isOpen' : '',
-      this._checkIfActive(link) ? 'isActive' : '',
-    ];
+    if (this.props.shouldShowLink(link)) {
+      const classes = [
+        'paper-list__item',
+        link.children ? 'hasSubmenu' : '',
+        this.state.active_second_level_menu === link.title ? 'isOpen' : '',
+        this._checkIfActive(link) ? 'isActive' : '',
+      ];
 
-    return (
-      <li className='paper-list__row' key={i}>
-        <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link, 'active_second_level_menu')}>
-          <div className='paper-tile layout horizontal justified center'>
-            <div className='paper-tile__content'>
-              {link.title}
-            </div>
-            {link.children ? (
+      return (
+        <li className='paper-list__row' key={i}>
+          <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link, 'active_second_level_menu')}>
+            <div className='paper-tile layout horizontal justified center'>
               <div className='paper-tile__content'>
-                <i className='material-icons md-18'>arrow_drop_down</i>
+                {link.title}
               </div>
-            ) : null}
-          </div>
-        </a>
-        {link.children ? (
-          <ul className='paper-list paper-list--nav-tree'>
-            {link.children.map(this._renderThirdLevelLink)}
-          </ul>
-        ) : null}
-      </li>
-    );
+              {link.children ? (
+                <div className='paper-tile__content'>
+                  <i className='material-icons md-18'>arrow_drop_down</i>
+                </div>
+              ) : null}
+            </div>
+          </a>
+          {link.children ? (
+            <ul className='paper-list paper-list--nav-tree'>
+              {link.children.map(this._renderThirdLevelLink)}
+            </ul>
+          ) : null}
+        </li>
+      );
+    } else {
+      return null;
+    }
   },
 
   _renderThirdLevelLink (link, i) {
-    const classes = [
-      'paper-list__item',
-      this._checkIfActive(link) ? 'isActive' : '',
-    ];
+    if (this.props.shouldShowLink(link)) {
+      const classes = [
+        'paper-list__item',
+        this._checkIfActive(link) ? 'isActive' : '',
+      ];
 
-    return (
-      <li className='paper-list__row' key={i}>
-        <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link)}>
-          <div className='paper-tile layout horizontal justified center'>
-            <div className='paper-tile__content'>
-              {link.title}
+      return (
+        <li className='paper-list__row' key={i}>
+          <a className={classes.join(' ')} onClick={this._handleLinkClick.bind(null, link)}>
+            <div className='paper-tile layout horizontal justified center'>
+              <div className='paper-tile__content'>
+                {link.title}
+              </div>
             </div>
-          </div>
-        </a>
-      </li>
-    );
+          </a>
+        </li>
+      );
+    } else {
+      return null;
+    }
   },
 
   render () {
