@@ -2,6 +2,7 @@ import React from 'react';
 
 const PaperSelect = React.createClass({
   propTypes: {
+    name: React.PropTypes.string,
     onChange: React.PropTypes.func,
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
       value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
@@ -27,6 +28,7 @@ const PaperSelect = React.createClass({
         <select
           className='paper-field__field paper-field__field--select'
           defaultValue={this.props.placeholder}
+          name={this.props.name}
           onChange={this._handleOnChange}
           placeholder={this.props.placeholder}
           style={{ height: '1em' }}
