@@ -28,6 +28,7 @@ var PaperField = _react2.default.createClass({
     options: _react2.default.PropTypes.array,
     placeholder: _react2.default.PropTypes.string,
     readOnly: _react2.default.PropTypes.bool,
+    required: _react2.default.PropTypes.bool,
     type: _react2.default.PropTypes.oneOf(['text', 'textarea', 'password', 'number', 'select']),
     value: _react2.default.PropTypes.string
   },
@@ -84,6 +85,11 @@ var PaperField = _react2.default.createClass({
           'i',
           { className: 'material-icons md-18 text--info-toggle' },
           'help'
+        ) : null,
+        this.props.required ? _react2.default.createElement(
+          'strong',
+          { className: 'color--neg' },
+          ' *'
         ) : null
       ) : null,
       this.props.help ? _react2.default.createElement(
