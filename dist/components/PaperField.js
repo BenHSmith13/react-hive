@@ -16,8 +16,9 @@ var PaperField = _react2.default.createClass({
   propTypes: {
     default: _react2.default.PropTypes.string,
     disabled: _react2.default.PropTypes.bool,
-    error: _react2.default.PropTypes.string,
+    errorMessage: _react2.default.PropTypes.string,
     help: _react2.default.PropTypes.string,
+    invalid: _react2.default.PropTypes.bool,
     label: _react2.default.PropTypes.string,
     maxLength: _react2.default.PropTypes.number,
     name: _react2.default.PropTypes.string,
@@ -72,7 +73,7 @@ var PaperField = _react2.default.createClass({
     }
   },
   render: function render() {
-    var classes = ['paper-field', this.props.error ? 'isNotValid' : null, this.state.isActive ? 'isActive' : null, this.props.disabled ? 'isDisabled' : null];
+    var classes = ['paper-field', this.props.invalid ? 'isNotValid' : null, this.state.isActive ? 'isActive' : null, this.props.disabled ? 'isDisabled' : null];
 
     return _react2.default.createElement(
       'div',
@@ -153,16 +154,16 @@ var PaperField = _react2.default.createClass({
         }) : null,
         _react2.default.createElement('hr', { className: 'paper-field__hr' })
       ),
-      this.props.error || this.props.maxLength ? _react2.default.createElement(
+      this.props.errorMessage || this.props.maxLength ? _react2.default.createElement(
         'div',
         { className: 'paper-field__footer' },
-        this.props.error ? _react2.default.createElement(
+        this.props.errorMessage ? _react2.default.createElement(
           'div',
           { className: 'paper-field__desc paper-field__desc--visible' },
           _react2.default.createElement(
             'div',
             { className: 'test--error-message' },
-            this.props.error
+            this.props.errorMessage
           )
         ) : null,
         this.props.maxLength ? _react2.default.createElement(
