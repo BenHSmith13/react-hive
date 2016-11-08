@@ -6,8 +6,9 @@ const PaperField = React.createClass({
   propTypes: {
     default: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    error: React.PropTypes.string,
+    errorMessage: React.PropTypes.string,
     help: React.PropTypes.string,
+    invalid: React.PropTypes.bool,
     label: React.PropTypes.string,
     maxLength: React.PropTypes.number,
     name: React.PropTypes.string,
@@ -70,7 +71,7 @@ const PaperField = React.createClass({
   render () {
     const classes = [
       'paper-field',
-      this.props.error ? 'isNotValid' : null,
+      this.props.invalid ? 'isNotValid' : null,
       this.state.isActive ? 'isActive' : null,
       this.props.disabled ? 'isDisabled' : null,
     ];
@@ -140,11 +141,11 @@ const PaperField = React.createClass({
 
           <hr className='paper-field__hr' />
         </div>
-        {this.props.error || this.props.maxLength ? (
+        {this.props.errorMessage || this.props.maxLength ? (
           <div className='paper-field__footer'>
-            {this.props.error ? (
+            {this.props.errorMessage ? (
               <div className='paper-field__desc paper-field__desc--visible'>
-                <div className='test--error-message'>{this.props.error}</div>
+                <div className='test--error-message'>{this.props.errorMessage}</div>
               </div>
             ) : null}
             {this.props.maxLength ? (
