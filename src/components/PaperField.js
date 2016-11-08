@@ -18,6 +18,7 @@ const PaperField = React.createClass({
     options: React.PropTypes.array,
     placeholder: React.PropTypes.string,
     readOnly: React.PropTypes.bool,
+    required: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['text', 'textarea', 'password', 'number', 'select']),
     value: React.PropTypes.string,
   },
@@ -80,6 +81,7 @@ const PaperField = React.createClass({
           <div className='paper-field__label'>
             {this.props.label}
             {this.props.help ? <i className='material-icons md-18 text--info-toggle'>help</i> : null}
+            {this.props.required ? <strong className='color--neg'> *</strong> : null}
           </div>
         ) : null}
         {this.props.help ? (
