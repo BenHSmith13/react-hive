@@ -21,7 +21,7 @@ const PaperField = React.createClass({
     readOnly: React.PropTypes.bool,
     required: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['text', 'textarea', 'password', 'number', 'select']),
-    value: React.PropTypes.string,
+    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   },
 
   getDefaultProps () {

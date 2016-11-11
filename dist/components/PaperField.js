@@ -31,7 +31,7 @@ var PaperField = _react2.default.createClass({
     readOnly: _react2.default.PropTypes.bool,
     required: _react2.default.PropTypes.bool,
     type: _react2.default.PropTypes.oneOf(['text', 'textarea', 'password', 'number', 'select']),
-    value: _react2.default.PropTypes.string
+    value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number])
   },
 
   getDefaultProps: function getDefaultProps() {
