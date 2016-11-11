@@ -8,6 +8,7 @@ const PaperSelect = React.createClass({
       value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     })),
     placeholder: React.PropTypes.string,
+    value: React.PropTypes.node,
   },
 
   getDefaultProps () {
@@ -27,11 +28,11 @@ const PaperSelect = React.createClass({
       <div>
         <select
           className='paper-field__field paper-field__field--select'
-          defaultValue={this.props.placeholder}
           name={this.props.name}
           onChange={this._handleOnChange}
           placeholder={this.props.placeholder}
           style={{ height: '1em' }}
+          value={this.props.value}
         >
           {this.props.placeholder ? <option disabled={true} value={null}>{this.props.placeholder}</option> : null}
           {this.props.options.map(option => {

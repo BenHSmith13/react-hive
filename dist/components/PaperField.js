@@ -137,7 +137,8 @@ var PaperField = _react2.default.createClass({
           name: this.props.name,
           onChange: this._handleChange,
           options: this.props.options,
-          placeholder: this.props.placeholder
+          placeholder: this.props.placeholder,
+          value: this.props.value
         }) : null,
         this.props.type !== 'textarea' && this.props.type !== 'select' ? _react2.default.createElement('input', {
           className: 'paper-field__field',

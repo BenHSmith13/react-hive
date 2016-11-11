@@ -15,7 +15,8 @@ var PaperSelect = _react2.default.createClass({
     options: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
       value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number]).isRequired
     })),
-    placeholder: _react2.default.PropTypes.string
+    placeholder: _react2.default.PropTypes.string,
+    value: _react2.default.PropTypes.node
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -36,11 +37,11 @@ var PaperSelect = _react2.default.createClass({
         'select',
         {
           className: 'paper-field__field paper-field__field--select',
-          defaultValue: this.props.placeholder,
           name: this.props.name,
           onChange: this._handleOnChange,
           placeholder: this.props.placeholder,
-          style: { height: '1em' }
+          style: { height: '1em' },
+          value: this.props.value
         },
         this.props.placeholder ? _react2.default.createElement(
           'option',

@@ -120,6 +120,7 @@ const PaperField = React.createClass({
               onChange={this._handleChange}
               options={this.props.options}
               placeholder={this.props.placeholder}
+              value={this.props.value}
             />
           ) : null}
 
