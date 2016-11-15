@@ -12,10 +12,6 @@ const App = React.createClass({
     router: React.PropTypes.object,
   },
 
-  getInitialState () {
-    return {};
-  },
-
   _handleLinkClick (e, link) {
     if (link.link_route) {
       this.context.router.push(link.link_route);
