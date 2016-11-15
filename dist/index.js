@@ -8,6 +8,7 @@ module.exports = {
   PaperDrawer: require('./components/PaperDrawer'),
   PaperField: require('./components/PaperField'),
   PaperIcon: require('./components/PaperIcon'),
+  PaperLoader: require('./components/PaperLoader'),
   PaperNav: require('./components/PaperNav'),
   PaperSelect: require('./components/PaperSelect'),
   PaperZeroState: require('./components/PaperZeroState'),
