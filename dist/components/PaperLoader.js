@@ -22,8 +22,8 @@ var PaperLoader = _react2.default.createClass({
           fill: 'none',
           r: '20',
           stroke: 'currentColor',
-          'stroke-miterlimit': '10',
-          'stroke-width': '3'
+          strokeMiterlimit: '10',
+          strokeWidth: '3'
         })
       )
     );
