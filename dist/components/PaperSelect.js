@@ -45,7 +45,7 @@ var PaperSelect = _react2.default.createClass({
         },
         this.props.placeholder ? _react2.default.createElement(
           'option',
-          { disabled: true, value: null },
+          { disabled: true, value: '' },
           this.props.placeholder
         ) : null,
         this.props.options.map(function (option) {

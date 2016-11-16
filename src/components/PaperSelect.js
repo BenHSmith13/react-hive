@@ -34,7 +34,7 @@ const PaperSelect = React.createClass({
           style={{ height: '1em' }}
           value={this.props.value}
         >
-          {this.props.placeholder ? <option disabled={true} value={null}>{this.props.placeholder}</option> : null}
+          {this.props.placeholder ? <option disabled={true} value=''>{this.props.placeholder}</option> : null}
           {this.props.options.map(option => {
             return (
               <option key={option.value} value={option.value}>{option.label || option.value}</option>
