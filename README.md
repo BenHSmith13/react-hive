@@ -1,4 +1,5 @@
 [![npm version](https://badge.fury.io/js/react-hive.svg)](https://badge.fury.io/js/react-hive)
+[![hive version](https://img.shields.io/badge/hive-v3.1.x-brightgreen.svg)](https://github.com/enderlabs/hive/tree/v3.0.0)
 
 ## Versioning Strategy
 This package's version will follow the major and minor versions of [Hive](https://github.com/enderlabs/hive). For patch versions you'll want to use the latest version.
