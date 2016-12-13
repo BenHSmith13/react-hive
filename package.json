@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint src",
     "docs": "webpack app.js docs/bundle.js -w & node server.js && wait",
-    "build": "eslint src && babel src --out-dir dist"
+    "release": "eslint src && babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
